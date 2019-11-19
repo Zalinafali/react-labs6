@@ -16,6 +16,7 @@ class App extends React.Component{
 
     this.handleClickCancel = this.handleClickCancel.bind(this);
     this.employeeDelete = this.employeeDelete.bind(this);
+    this.employeesGet = this.employeesGet.bind(this);
     this.reload = this.reload.bind(this);
   }
 
@@ -24,6 +25,7 @@ class App extends React.Component{
   }
 
   employeesGet(){
+    this.setState({isLoading: true})
     fetch('http://localhost:3004/employees')
     .then(response => response.json())
     .then(data => this.setState({employees: data}))
@@ -37,8 +39,8 @@ class App extends React.Component{
       headers: {'Content-type': 'application/json'},
       body: JSON.stringify({id: userId})
     })
-    .then(this.setState({deleteId: ''}));
-    this.employeesGet();
+    .then(this.setState({deleteId: ''}))
+    .then(this.employeesGet);
   }
 
   handleClickCancel(){
