@@ -13,6 +13,7 @@ class App extends React.Component{
     };
 
     this.handleClickCancel = this.handleClickCancel.bind(this);
+    this.reload = this.reload.bind(this);
   }
 
   componentDidMount() {
@@ -23,7 +24,12 @@ class App extends React.Component{
   }
 
   handleClickCancel(){
+    console.log('Cancel button clicked');
     this.setState({isAdding : false});
+  }
+
+  reload(){
+    this.forceUpdate();
   }
 
   render(){
@@ -35,7 +41,7 @@ class App extends React.Component{
           }
         </p>
         <div>
-          {this.state.isAdding ? <Form handlerCancel={this.state.handleClickCancel}/>
+          {this.state.isAdding ? <Form handlerCancel={this.handleClickCancel}/>
             :  <button onClick={() => this.setState({isAdding: true})}>Add employee</button>}
         </div>
       </div>

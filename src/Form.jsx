@@ -23,7 +23,22 @@ class Form extends React.Component{
       }
 
       handleSubmitForm(e){
-       
+        this.setState({isSaving: true});
+        fetch('http://localhost:3004/employees',{
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                "id":"",
+                "isActive": this.state.formIsActive,
+                "age": this.state.formAge,
+                "name": this.state.formName,
+                "company": this.state.formCompany,
+                "email": this.state.formEmail
+            })
+        }).then(() => this.setState({isSaving: false}));
       }
 
     render(){
