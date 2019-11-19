@@ -29,7 +29,8 @@ class App extends React.Component{
   }
 
   reload(){
-    this.forceUpdate();
+    console.log('Update after add');
+    this.componentDidMount();
   }
 
   render(){
@@ -41,7 +42,10 @@ class App extends React.Component{
           }
         </p>
         <div>
-          {this.state.isAdding ? <Form handlerCancel={this.handleClickCancel}/>
+          {this.state.isAdding ? <Form 
+                                    handlerCancel={this.handleClickCancel}
+                                    handlerReload={this.reload}
+                                  />
             :  <button onClick={() => this.setState({isAdding: true})}>Add employee</button>}
         </div>
       </div>
