@@ -1,13 +1,18 @@
 import React from 'react'
+import Form from './Form'
 
 class App extends React.Component{
 
   constructor(props){
     super(props);
+
     this.state = {
       employees: null,
-      isLoading: true
+      isLoading: true,
+      isAdding: false
     };
+
+    this.handleClickCancel = this.handleClickCancel.bind(this);
   }
 
   componentDidMount() {
@@ -17,12 +22,22 @@ class App extends React.Component{
       .then(() => this.setState({isLoading: false}));
   }
 
+  handleClickCancel(){
+    this.setState({isAdding : false});
+  }
+
   render(){
     return(
       <div>
-        {this.state.isLoading ? <label>Loading...</label> : 
-          <div>Data loaded: {this.state.employees.length}</div>
-        }
+        <p>
+          {this.state.isLoading ? <label>Loading...</label> : 
+            <div>Data loaded: {this.state.employees.length}</div>
+          }
+        </p>
+        <div>
+          {this.state.isAdding ? <Form handlerCancel={this.state.handleClickCancel}/>
+            :  <button onClick={() => this.setState({isAdding: true})}>Add employee</button>}
+        </div>
       </div>
     )
   }
