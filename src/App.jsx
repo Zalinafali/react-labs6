@@ -1,4 +1,12 @@
 import React from 'react'
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom"
+
 import PageEmployeesList from './PageEmployeesList'
 import PageEmployee from './PageEmployee'
 
@@ -16,7 +24,16 @@ class App extends React.Component{
   render(){
     return(
       <div>
-        <PageEmployee/>
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <PageEmployeesList></PageEmployeesList>
+            </Route>
+            <Route exact path="/new">
+              <PageEmployee></PageEmployee>
+            </Route>
+          </Switch>
+        </Router>
       </div>
     )
   }
