@@ -1,4 +1,9 @@
 import React from 'react'
+
+import{
+    Link
+} from "react-router-dom"
+
 import EmployeesList from './EmployeesList'
 
 class PageEmployeesList extends React.Component{
@@ -55,6 +60,8 @@ class PageEmployeesList extends React.Component{
                             handlerDelete={this.employeeDelete}
                             deleteId={this.state.deleteId}
                         />
+                        <br/>
+                        <Link to="/new"><button>Create new employee</button></Link>
                     </div>
                 }
             </div>
